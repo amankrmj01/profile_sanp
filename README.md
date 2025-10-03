@@ -33,7 +33,7 @@ Currently supporting **HackerRank** and **LeetCode** with plans to expand to oth
 1. Clone the repository:
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/amankrmj01/profile_sanp
 cd profile_snap
 ```
 
