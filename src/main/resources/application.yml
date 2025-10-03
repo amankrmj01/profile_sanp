@@ -1,0 +1,7 @@
+micronaut:
+  application:
+    name: profilesnap
+  server:
+    port: 8080
+    ssl:
+      enabled: false

@@ -1,0 +1,178 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.piandphi.grpc";
+option java_outer_classname = "ProfileProto";
+
+service ProfileService {
+  rpc GetHackerRankProfile (PlatformRequest) returns (HackerRankResponse);
+  rpc GetLeetCodeProfile (PlatformRequest) returns (LeetCodeResponse);
+  rpc GetUserProfile (PlatformRequest) returns (UserProfileResponse);
+  rpc GetUserContestHistory (PlatformRequest) returns (UserContestHistoryResponse);
+  rpc GetUserSubmissions (UserSubmissionsRequest) returns (UserSubmissionsResponse);
+}
+
+message PlatformRequest {
+  string username = 1;
+}
+
+message UserSubmissionsRequest {
+  string username = 1;
+  optional int32 limit = 2;
+}
+
+message HackerRankResponse {
+  string username = 1;
+  string full_name = 2;
+  int32 rank = 3;
+  int32 problems_solved = 4;
+  string profile_picture_url = 5;
+  repeated string badges = 6;
+  string bio = 7;
+}
+
+message LeetCodeResponse {
+  string username = 1;
+  optional string full_name = 2;
+  optional string image_url = 3;
+  optional int32 rank = 4;
+  optional int32 total_questions = 5;
+  optional int32 easy_solved = 6;
+  optional int32 medium_solved = 7;
+  optional int32 hard_solved = 8;
+  repeated string badges = 9;
+  optional CommunityStats community_stats = 10;
+  repeated string languages = 11;
+  repeated string skills = 12;
+  optional string github_link = 13;
+  optional string twitter_link = 14;
+  optional string linkedin_link = 15;
+  // Legacy fields for backward compatibility
+  optional int32 total_submissions = 16;
+  optional int32 accepted_submissions = 17;
+  optional int32 contest_rating = 18;
+  optional string profile_picture_url = 19;
+  optional string country = 20;
+}
+
+message CommunityStats {
+  optional int32 reputation = 1;
+  optional int32 views = 2;
+  optional int32 solutions = 3;
+  optional int32 discuss_count = 4;
+}
+
+// UserProfile messages
+message UserProfileResponse {
+  string username = 1;
+  optional string github_url = 2;
+  optional string twitter_url = 3;
+  optional string linkedin_url = 4;
+  Profile profile = 5;
+  SubmitStats submit_stats = 6;
+  ContestBadge contest_badge = 7;
+}
+
+message Profile {
+  optional string user_avatar = 1;
+  optional string real_name = 2;
+  repeated string websites = 3;
+  optional string country_name = 4;
+  optional string company = 5;
+  optional string job_title = 6;
+  repeated string skill_tags = 7;
+  optional string school = 8;
+  optional string about_me = 9;
+  optional int32 post_view_count = 10;
+  optional int32 post_view_count_diff = 11;
+  optional int32 reputation = 12;
+  optional int32 ranking = 13;
+  optional int32 reputation_diff = 14;
+  optional int32 solution_count = 15;
+  optional int32 solution_count_diff = 16;
+  optional int32 category_discuss_count = 17;
+  optional int32 category_discuss_count_diff = 18;
+  optional string certification_level = 19;
+}
+
+message SubmitStats {
+  repeated SubmissionCount ac_submission_num = 1;
+  repeated SubmissionCount total_submission_num = 2;
+}
+
+message SubmissionCount {
+  string difficulty = 1;
+  int32 count = 2;
+  int32 submissions = 3;
+}
+
+message ContestBadge {
+  string name = 1;
+  bool expired = 2;
+  optional string hover_text = 3;
+  optional string icon = 4;
+}
+
+// UserContestHistory messages
+message UserContestHistoryResponse {
+  UserContestRanking user_contest_ranking = 1;
+  repeated ContestHistoryEntry user_contest_ranking_history = 2;
+}
+
+message UserContestRanking {
+  optional int32 attended_contests_count = 1;
+  optional double rating = 2;
+  optional int32 global_ranking = 3;
+  optional int32 total_participants = 4;
+  optional double top_percentage = 5;
+  Badge badge = 6;
+}
+
+message Badge {
+  string name = 1;
+}
+
+message ContestHistoryEntry {
+  bool attended = 1;
+  optional string trend_direction = 2;
+  optional int32 problems_solved = 3;
+  optional int32 total_problems = 4;
+  optional int32 finish_time_in_seconds = 5;
+  optional double rating = 6;
+  optional int32 ranking = 7;
+  Contest contest = 8;
+}
+
+message Contest {
+  string title = 1;
+  string start_time = 2;
+}
+
+// UserSubmissions messages
+message UserSubmissionsResponse {
+  repeated RecentSubmission submissions = 1;
+}
+
+message RecentSubmission {
+  string id = 1;
+  string title = 2;
+  string title_slug = 3;
+  string timestamp = 4;
+  string status = 5;
+  string status_display = 6;
+  string lang = 7;
+  string url = 8;
+  string lang_name = 9;
+  optional string runtime = 10;
+  bool is_pending = 11;
+  optional string memory = 12;
+  bool has_notes = 13;
+  optional string notes = 14;
+  optional string flag_type = 15;
+  optional string frontend_id = 16;
+  repeated TopicTag topic_tags = 17;
+}
+
+message TopicTag {
+  string id = 1;
+}

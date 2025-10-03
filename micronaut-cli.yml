@@ -1,0 +1,6 @@
+applicationType: default
+defaultPackage: com.piandphi
+testFramework: junit
+sourceLanguage: java
+buildTool: gradle_kotlin
+features: [ app-name, discovery-core, gradle, graphql, http-client, java, java-application, junit, logback, micronaut-build, microstream-cache, properties, readme, serialization-jackson, shade ]

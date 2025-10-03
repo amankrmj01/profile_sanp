@@ -1,0 +1,17 @@
+micronaut:
+  application:
+    name: profilesnap
+  server:
+    port: 8080
+    ssl:
+      enabled: false
+
+microstream:
+  storage:
+    root-class: com.piandphi.cache.ProfileCacheRoot
+    directory: build/microstream-data
+
+grpc:
+  channels:
+    default:
+      address: "localhost:50051"

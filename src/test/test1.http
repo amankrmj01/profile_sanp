@@ -1,0 +1,13 @@
+### get leetcode
+GET http://localhost:8080/scraper/leetcode/amankrmj01
+Accept: application/json
+
+
+
+### leetcode
+GET http://localhost:8080/leetcode/user/amankrmj01
+Accept: application/json
+
+
+### leetcode
+GET http://localhost:8080/leetcode/user/amankrmj01/submissions
